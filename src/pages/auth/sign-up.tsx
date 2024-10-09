@@ -1,6 +1,8 @@
+import { registerRestaurant } from "@/api/register-restaurant";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useMutation } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import {useForm} from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom";
@@ -17,18 +19,30 @@ const SignOutForm = z.object({
 
 type SignOutForm = z.infer<typeof SignOutForm>
 
-export function SignOut() {
+export function SignUp() {
 
     const {register,handleSubmit,formState: {isSubmitting}} = useForm<SignOutForm>();
     const navigate = useNavigate();
 
+    const { mutateAsync: registerRestaurantFn} = useMutation({
+      mutationFn:registerRestaurant
+    })
+
     async function handleSign(data:SignOutForm) {
        try {
+
+
+          registerRestaurantFn({
+            restaurantName:data.restaurantName,
+            managerName:data.managerName,
+            email:data.email,
+            phone:data.phone
+          })
 
           toast.success("Restaurante cadastrado com sucesso",{
             action:{
                label:"Login",
-               onClick:() => navigate("/")
+               onClick:() => navigate(`/signIn?email=${data.email}`)
             }
           })
 

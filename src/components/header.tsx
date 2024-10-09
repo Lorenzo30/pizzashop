@@ -10,7 +10,7 @@ export function Header() {
         <div className="border-b">
             <div className="flex h-16 items-center gap-6 px-6">
 
-                <div className="flex items-center gap-3 text-lg font-medium text-foreground">
+                <div className="flex items-center gap-3 text-lg font-medium">
                     <Pizza className="h-5 w-5" />
                     <span className="font-semibold">Pizza shop</span>
                 </div>
@@ -30,7 +30,7 @@ export function Header() {
                     </NavLink>
                 </nav>
 
-                <div className="ml-auto flex items-center gap-2 text-foreground">
+                <div className="ml-auto flex items-center gap-2">
                     <ThemeToggle />
                     <AccountMenu />
                 </div>
